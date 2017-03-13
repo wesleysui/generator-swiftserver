@@ -1359,4 +1359,54 @@ describe('swiftserver:refresh', function () {
       assert.fileContent('.bluemix/pipeline.yml', '"name with spaces"');
     });
   });
+
+  describe('Generate a kubernates file ', function() {
+
+    var runContext;
+
+    before(function() {
+      var spec = {
+        appType: 'web',
+        appName: appName,
+        bluemix: true,
+        config: {
+          logger: 'helium',
+          port: 8080
+        }
+      };
+      runContext = helpers.run(path.join(__dirname, '../../refresh'))
+        .withOptions({
+          specObj: spec
+        })
+        return runContext.toPromise();
+    });
+
+    after(function() {
+      runContext.cleanTestDirectory();
+    });
+
+    it('generates a kube.yml file', function() {
+      assert.file('manifest/kube.yml');
+    });
+
+    it('produces the correct metadata name', function() {
+      assert.fileContent('manifest/kube.yml', /metadata:\n\s*name: "todo-service"/);
+    });
+
+    it('produces the correct selector', function() {
+      assert.fileContent('manifest/kube.yml', `${appName}-selector`);
+    });
+
+    it('produces the correct deployment name', function() {
+      assert.fileContent('manifest/kube.yml', `${appName}-deployment`);
+    });
+
+    it('produces the correct label name', function() {
+      assert.fileContent('manifest/kube.yml', /labels:\n\s*app: "todo-selector"/);
+    });
+
+    it('produces the correct container name', function() {
+      assert.fileContent('manifest/kube.yml', /- name:\s*todo/);
+    });
+  });
 });

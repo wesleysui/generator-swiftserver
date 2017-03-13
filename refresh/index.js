@@ -941,6 +941,13 @@ module.exports = generators.Base.extend({
         this.templatePath('bluemix', 'deploy.json'),
         this.destinationPath('.bluemix', 'deploy.json')
       );
+
+      this.fs.copyTpl(
+        this.templatePath('bluemix', 'kube.yml'),
+        this.destinationPath('manifest', 'kube.yml'),
+        { appName: this.projectName,
+          bluemix: this.bluemix }
+      );
     },
 
     writePackageSwift: function() {
