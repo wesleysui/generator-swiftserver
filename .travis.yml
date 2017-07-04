@@ -26,7 +26,6 @@ script:
   - projectName="$(basename $projectFolder)"
   - export SWIFT_SNAPSHOT=swift-3.1.1
   - source ./Package-Builder/install-swift.sh
-  - export DEBUG='generator-swiftserver:lib:sdkGenHelper'
   - npm run coverage
   - npm run report-coverage
 
