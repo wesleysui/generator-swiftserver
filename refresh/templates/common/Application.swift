@@ -6,9 +6,7 @@ import Configuration
 <% if (appType === 'crud') { -%>
 import <%- generatedModule %>
 <% } -%>
-<% if(bluemix) { -%>
-import CloudFoundryConfig
-<% } -%>
+import CloudEnvironment
 <% if (Object.keys(capabilities).length > 0) { -%>
 <%   Object.keys(capabilities).forEach(function(capabilityType) { -%>
 <%     if(capabilities[capabilityType] === true || typeof(capabilities[capabilityType]) === 'string') { -%>
@@ -22,8 +20,7 @@ import CloudFoundryConfig
 <%   }); -%>
 <% } %>
 public let router = Router()
-public let manager = ConfigurationManager()
-public var port: Int = 8080
+public let cloudEnv = CloudEnv()
 <% if (basepath) { -%>
 public var basePath = "<%- basepath %>"
 <% } -%>
@@ -35,10 +32,7 @@ public var basePath = "<%- basepath %>"
 <% } -%>
 public func initialize() throws {
 
-    manager.load(file: "config.json", relativeFrom: .project)
-           .load(.environmentVariables)
-
-    port = manager.port
+    /*manager.load(file: "config.json", relativeFrom: .project)   Currently need to revise this*/
 
 <% if (Object.keys(capabilities).length > 0) { -%>
 <%   Object.keys(capabilities).forEach(function(capabilityType) { -%>
@@ -76,7 +70,7 @@ public func initialize() throws {
     initializeSwaggerRoute(path: ConfigurationManager.BasePath.project.path + "/definitions/<%- appName %>.yaml")
 <% } -%>
     let health = Health()
-    
+
     router.get("/health") { request, response, _ in
         let result = health.status.toSimpleDictionary()
         if health.status.state == .UP {
@@ -88,6 +82,6 @@ public func initialize() throws {
 }
 
 public func run() throws {
-    Kitura.addHTTPServer(onPort: port, with: router)
+    Kitura.addHTTPServer(onPort: cloudEnv.port, with: router)
     Kitura.run()
 }

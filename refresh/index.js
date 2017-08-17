@@ -1099,17 +1099,6 @@ module.exports = Generator.extend({
     },
 
     createExtensionFiles: function () {
-      if (!this.bluemix) {
-        this._ifNotExistsInProject(['Sources', this.applicationModule, 'Extensions', 'ConfigurationManagerExtension.swift'], (filepath) => {
-          // Add the extension for the configuration manager
-          this.fs.copy(
-            this.templatePath('extensions', 'ConfigurationManagerExtension.swift'),
-            filepath
-          )
-        })
-        return
-      }
-
       // Create all the extension files
       Object.keys(this.services).forEach(function (serviceType) {
         if (serviceType === 'cloudant') {
