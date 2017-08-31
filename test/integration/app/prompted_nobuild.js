@@ -84,12 +84,12 @@ describe('Prompt and no build integration tests for app generator', function () 
       assert.file('Tests/LinuxMain.swift')
     })
 
-    it('Package.swift contains Configuration dependency', function () {
-      assert.fileContent('Package.swift', '/Configuration')
+    it('Package.swift contains CloudEnvironment dependency', function () {
+      assert.fileContent('Package.swift', '/CloudEnvironment')
     })
 
-    it('Application.swift references Configuration', function () {
-      assert.fileContent('Sources/Application/Application.swift', 'import Configuration')
+    it('Application.swift references CloudEnvironment', function () {
+      assert.fileContent('Sources/Application/Application.swift', 'import CloudEnvironment')
     })
 
     it('Package.swift contains Health dependency', function () {
@@ -155,8 +155,8 @@ describe('Prompt and no build integration tests for app generator', function () 
       return runContext.toPromise()
     })
 
-    it('Package.swift contains CloudConfiguration dependency', function () {
-      assert.fileContent('Package.swift', '/CloudConfiguration')
+    it('Package.swift contains CloudEnvironment dependency', function () {
+      assert.fileContent('Package.swift', '/CloudEnvironment')
     })
   })
 

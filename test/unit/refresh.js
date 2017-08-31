@@ -939,10 +939,6 @@ describe('swiftserver:refresh', function () {
       assert.noFileContent(`Sources/${applicationModule}/Application.swift`, 'import SwiftMetricsBluemix')
       assert.noFileContent(`Sources/${applicationModule}/Application.swift`, 'let _ = SwiftMetricsBluemix(swiftMetricsInstance: sm)')
     })
-
-    it('generates the extension for ConfigurationManager', function () {
-      assert.file(`Sources/${applicationModule}/Extensions/ConfigurationManagerExtension.swift`)
-    })
   })
 
   describe('Updating a skeleton CRUD application without bluemix and with no models', function () {

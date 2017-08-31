@@ -1089,9 +1089,12 @@ module.exports = Generator.extend({
 
     createExtensionFiles: function () {
       // Create all the extension files
+      console.log("Christian")
       Object.keys(this.services).forEach(function (serviceType) {
+        console.log(serviceType)
         if (serviceType === 'cloudant') {
           this._ifNotExistsInProject(['Sources', this.applicationModule, 'Extensions', 'CouchDBExtension.swift'], (filepath) => {
+            console.log("Not Exist")
             this.fs.copy(
               this.templatePath('extensions', 'CouchDBExtension.swift'),
               filepath

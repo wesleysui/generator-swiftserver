@@ -26,11 +26,7 @@ This scaffolded application provides a starting point for creating Swift applica
 ### Project contents
 This application has been generated with the following capabilities and services:
 
-<% if (bluemix) { -%>
-* [CloudConfiguration](#configuration)
-<% } else { -%>
-* [Configuration](#configuration)
-<% } -%>
+* [CloudEnvironment](#configuration)
 <% if (web) { -%>
 * [Static web file serving](#static-web-file-serving)
 <% } -%>
@@ -237,19 +233,14 @@ Boilerplate code for creating a client object for the Kitura-redis API is includ
 <% } -%>
 
 ### Configuration
-Your application configuration information is stored in the `config.json` in the project root directory. This file is in the `.gitignore` to prevent sensitive information from being stored in git.
+Your application configuration information is stored in the `mappings.json` in the project root directory. This file is in the `.gitignore` to prevent sensitive information from being stored in git.
 
-The connection information for any configured services, such as username, password and hostname, is stored in this file.
+The connection information for any configured services, such as username, password and hostname, is stored in the files referenced in `mappings.json`, local, Bluemix CloudFoundry, or Kubernetes.
 
-<% if (bluemix) { -%>
-The application uses the [CloudConfiguration package](https://github.com/IBM-Swift/CloudConfiguration) to read the connection and configuration information from the environment and this file.
+The application uses the [CloudEnvironment package](https://github.com/IBM-Swift/CloudEnvironment) to read the connection and configuration information from the environment and this file.
 
 If the application is running locally, it can connect to Bluemix services using unbound credentials read from this file. If you need to create unbound credentials you can do so from the Bluemix web console ([example](https://console.ng.bluemix.net/docs/services/Cloudant/tutorials/create_service.html#creating-a-service-instance)), or using the CloudFoundry CLI [`cf create-service-key` command](http://cli.cloudfoundry.org/en-US/cf/create-service-key.html).
 
-When you push your application to Bluemix, these values are no longer used, instead Bluemix automatically connects to bound services using environment variables.
-<% } else {-%>
-The application uses the [Configuration package](https://github.com/IBM-Swift/Configuration) to read the connection and configuration information from this file.
-<% } -%>
 
 ### Run
 To build and run the application:
