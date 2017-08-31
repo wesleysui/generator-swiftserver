@@ -19,8 +19,8 @@ import CloudEnvironment
 <%-    include(`../services/${serviceType}/importModule.swift`) -%>
 <%   }); -%>
 <% } %>
-public let router = Router()
 public let cloudEnv = CloudEnv()
+public let router = Router()
 <% if (basepath) { -%>
 public var basePath = "<%- basepath %>"
 <% } -%>
@@ -30,9 +30,7 @@ public var basePath = "<%- basepath %>"
 <%-    include(`../services/${serviceType}/declareService.swift`) -%>
 <%   }); %>
 <% } -%>
-public func initialize() throws {
-
-    /*manager.load(file: "config.json", relativeFrom: .project)   Currently need to revise this*/
+public func initialize() {
 
 <% if (Object.keys(capabilities).length > 0) { -%>
 <%   Object.keys(capabilities).forEach(function(capabilityType) { -%>
@@ -81,7 +79,7 @@ public func initialize() throws {
     }
 }
 
-public func run() throws {
+public func run() {
     Kitura.addHTTPServer(onPort: cloudEnv.port, with: router)
     Kitura.run()
 }

@@ -26,7 +26,7 @@ var nock = require('nock')
 var config = require('../../config')
 var sdkGenCheckDelaySaved
 
-var expectedFiles = ['.swiftservergenerator-project', 'Package.swift', 'config.json',
+var expectedFiles = ['.swiftservergenerator-project', 'Package.swift',
   '.yo-rc.json', 'LICENSE', 'README.md']
 
 var appName = 'todo'
@@ -375,10 +375,6 @@ describe('swiftserver:refresh', function () {
 
     it('requested iOS SDK over http', function () {
       assert(sdkScope.isDone())
-    })
-
-    it('generated the correct config file', function () {
-      assert.jsonFileContent('config.json', {logger: 'helium', port: 4567})
     })
 
     it('generates the expected files in the root of the project', function () {
@@ -842,10 +838,6 @@ describe('swiftserver:refresh', function () {
       runContext.cleanTestDirectory()
     })
 
-    it('generated the correct config file', function () {
-      assert.jsonFileContent('config.json', { vcap: { services: {} } })
-    })
-
     it('generates the expected files in the root of the project', function () {
       assert.file(expectedFiles)
     })
@@ -959,7 +951,6 @@ describe('swiftserver:refresh', function () {
       'README.md',
       'LICENSE',
       'Package.swift',
-      'config.json',
       `Sources/${executableModule}/main.swift`,
       `Sources/${applicationModule}/Application.swift`,
       `Sources/${applicationModule}/Extensions/ConfigurationManagerExtension.swift`,

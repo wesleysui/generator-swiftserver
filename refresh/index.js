@@ -763,17 +763,6 @@ module.exports = Generator.extend({
         )
       })
 
-      // Check if there is a config.json, create one if there isn't
-      this._ifNotExistsInProject('config.json', (filepath) => {
-        var configToWrite
-        if (this.bluemix) {
-          configToWrite = helpers.generateCloudConfig(this.spec.config, this.services)
-        } else {
-          configToWrite = helpers.generateLocalConfig(this.spec.config, this.services)
-        }
-        this.fs.writeJSON(filepath, configToWrite)
-      })
-
       this._ifNotExistsInProject('.swift-version', (filepath) => {
         this.fs.copy(this.templatePath('common', 'swift-version'),
                      filepath)
