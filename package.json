@@ -29,7 +29,7 @@
     "handlebars": "^4.0.5",
     "js-yaml": "^3.9.1",
     "request": "^2.81.0",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.6.2",
     "swagger-parser": "^3.4.2",
     "swagger-schema-official": "^2.0.0-d79c205",
     "swaggerize-routes": "^1.0.0",
