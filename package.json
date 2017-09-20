@@ -45,7 +45,7 @@
     "mem-fs-editor": "^3.0.2",
     "mkdirp": "^0.5.1",
     "mocha": "^3.5.0",
-    "nock": "^9.0.13",
+    "nock": "^9.0.17",
     "nyc": "^11.1.0",
     "standard": "^10.0.3",
     "standard-version": "^4.2.0",
