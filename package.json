@@ -30,7 +30,7 @@
     "generator-ibm-service-enablement": "0.0.75",
     "handlebars": "^4.0.5",
     "js-yaml": "^3.9.1",
-    "request": "^2.81.0",
+    "request": "2.81.0",
     "rimraf": "^2.5.2",
     "swagger-parser": "^3.4.2",
     "swagger-schema-official": "^2.0.0-d79c205",
